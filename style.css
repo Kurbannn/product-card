@@ -2,74 +2,82 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Montserrat", Arial;
+  font-family: 'Montserrat', Arial;
   font-size: 13px;
   line-height: 18px;
   color: #515076;
   font-weight: 400;
-  list-style: none;
 }
-.content-container {
+
+.main-title-wrapper {
   background-repeat: no-repeat;
   background-position: 85px -15px;
   position: absolute;
   width: 1280px;
-  background-image: url("/image/background-flowers.png");
+  background-image: url('/image/background-flowers.png');
   background-size: 790px 697px;
-  
 }
+
 .choose-product-text {
   font-size: 70px;
   line-height: 78px;
   text-align: center;
   vertical-align: middle;
   margin-top: 220px;
+  left: 85px;
+  margin-bottom: 50px;
 }
+
 .product-card-list {
-  width: 1110px;
-  height: 1191px;
+  width: 100%;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 45px calc(45px);
-  margin: 110px 85px 0px 85px;
+  gap: 30px;
+  padding: 0 15px;
+  margin-top: 110px;
 }
+
 .card-container {
-   width: 340px;
-   height: 573px;
-   padding: 25px;
-   background-color: #F7F7FA;
-   box-shadow: 2px 2px 10px 0px #5150761A;
+  width: 340px;
+  height: 573px;
+  padding: 25px;
+  background-color: #F7F7FA;
+  box-shadow: 2px 2px 10px 0px rgba(81, 80, 118, 0.1);
 }
+
 .product-category {
-   font-weight: 400;
-   font-size: 12px;
-   line-height: 24px;
-   text-transform: uppercase;
-   color:#A5A3B9;
-   margin-top: 30px;
-   margin-bottom: 5px;
-   display: block;
+  font-size: 12px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #A5A3B9;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  display: block;
 }
+
 .product-name {
-   font-weight: 700;
-   font-size: 20px;
-   line-height: 27px;
-   color: #515076;
-   margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  color: #515076;
+  margin-bottom: 5px;
 }
+
 .product-description {
-   margin-bottom: 15px;
+  margin-bottom: 15px;
 }
+
 .product-compound {
   margin-top: 5px;
   list-style: circle;
 }
+
 .product-compound-item {
   margin-left: 0px;
   list-style: none;
 }
+
 .product-compound-item::before {
   content: '';
   display: inline-block;
@@ -81,16 +89,19 @@
   position: relative;
   top: 0.5px;
 }
+
 .product-price-container {
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
 }
+
 .product-price-label {
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
 }
+
 .product-price {
   font-size: 20px;
   line-height: 24px;
