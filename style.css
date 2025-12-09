@@ -171,11 +171,26 @@
   margin: 0 auto; 
   max-width: 1110px; 
 }
-
-
 .product-card-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; 
   gap: 30px; 
   padding: 0 15px;}
+#toggle-color-btn {
+    transition: background-color 0.3s, color 0.3s;
+}
+#toggle-color-btn.color-purple {
+    background-color: #9669c9ff;
+    color: #fff;
+}
+#toggle-color-btn.color-green {
+    background-color: #00FF00;
+    color: #000;
+}
+.card-container.green-bg {
+    background-color: #00FF00;
+}
+.card-container.purple-bg {
+    background-color: #9669c9ff;
+}
