@@ -23,23 +23,17 @@ changeColorFirstCardButton.addEventListener('click', () => {
         return
     }
  }
-    //Вывод заголовка на консоль
-    const mainTitle = document.querySelector('.choose-product-text');
-    mainTitle.addEventListener('mouseenter', () => {
-    console.log(mainTitle.textContent.trim()); })
-    //переключение кнопок 
-    const toggleColorBtn = document.querySelector('#toggle-color-btn');
-    const color1 = '#9669c9ff'; 
-    const color2 = '#00FF00'; 
-    let isFirstColor = true;
+   const toggleColorBtn = document.querySelector('#toggle-color-btn');
+   const color1 = '#9669c9ff'; 
+   const color2 = '#00FF00';
     toggleColorBtn.addEventListener('click', function() {
-     if (isFirstColor) {
-     this.style.backgroundColor = color2;
-     this.style.color = '#000'; 
-    } else {
+    const isNowFirstColor = this.classList.toggle('first-color');
+    if (isNowFirstColor) {
         this.style.backgroundColor = color1;
-        this.style.color = '#fff'; 
+        this.style.color = '#fff';
+    } else {
+        this.style.backgroundColor = color2;
+        this.style.color = '#000';
     }
-    isFirstColor = !isFirstColor;
     console.log(`Цвет кнопки изменен на: ${this.style.backgroundColor}`);
 });
