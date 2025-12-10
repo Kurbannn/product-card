@@ -166,7 +166,6 @@
 .card-container:nth-child(5) {
   grid-row: 2;}
 
-
 .product-card-list {
   margin: 0 auto; 
   max-width: 1110px; 
@@ -177,20 +176,30 @@
   justify-content: center; 
   gap: 30px; 
   padding: 0 15px;}
-#toggle-color-btn {
-    transition: background-color 0.3s, color 0.3s;
-}
-#toggle-color-btn.color-purple {
+.bg-purple {
     background-color: #9669c9ff;
+}
+
+.bg-green {
+    background-color: #00FF00;
+}
+.text-white {
     color: #fff;
 }
-#toggle-color-btn.color-green {
+.text-black {
+    color: #000;
+}
+.alternative-theme {
     background-color: #00FF00;
     color: #000;
 }
-.card-container.green-bg {
-    background-color: #00FF00;
-}
-.card-container.purple-bg {
+#toggle-color-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
     background-color: #9669c9ff;
+    color: #fff;
 }
