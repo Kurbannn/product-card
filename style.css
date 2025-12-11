@@ -189,6 +189,9 @@
 .text-black {
     color: #000;
 }
+.card-container.green-bg { background-color: #00FF00;
+
+}
 .alternative-theme {
     background-color: #00FF00;
     color: #000;
@@ -202,4 +205,7 @@
     transition: all 0.3s ease;
     background-color: #9669c9ff;
     color: #fff;
+  }
+  .card-container.purple-bg {
+    background-color: #9669c9ff;
 }
