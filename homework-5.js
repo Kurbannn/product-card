@@ -23,11 +23,11 @@ checkSpeed(200000000); // Субсветовая скорость
 checkSpeed(299792458); // Скорость света
 
 //задание 5
-const product = "Кувалда";
+const purchaseProduct = "Кувалда";
 const price = 3000;
 function buyProduct(budget) {
     if (budget >= price) {
-        console.log(`(${product}) приобретён. Спасибо за покупку!`);
+        console.log(`(${purchaseProduct}) приобретён. Спасибо за покупку!`);
     } else {
         const difference = price - budget;
         console.log(`Вам не хватает ${difference}$, пополните баланс`);
