@@ -109,7 +109,7 @@ console.log(unitedBookOfManga);
 function assignRarityFlag(object) {
   object.isRare = object.year <= 2000;
   return object;
-}
+};
 
 const updatedFindBookListArray = unitedBookOfManga.map(assignRarityFlag);
 console.log(updatedFindBookListArray);
