@@ -30,12 +30,12 @@ setInfoMaxSpeed(car);
 
 // 6 задание — Написать функцию, которая получает первым аргументом объект, 
 // а вторым — имя свойства; выводит значение этого свойства в консоль
-function addPropertyValue(obj, propertyName) {
+function displayPropertyValue(obj, propertyName) {
   console.log(obj[propertyName]);
 }
 
 
-addPropertyValue(car, "maxSpeed"); 
+displayPropertyValue(car, "maxSpeed"); 
 
 // 7 задание — Создать массив, который содержит названия продуктов
 const productList = [
@@ -46,7 +46,7 @@ const productList = [
 ];
 
 // 8 задание — Создать массив, состоящий из объектов, где объект представляет собой книгу
-const findBookListArray = [
+const bookCollection = [
   {
     title: "Book 1",
     author: "Author 1",
@@ -69,16 +69,16 @@ const findBookListArray = [
   }
 ];
 
-findBookListArray.push({
+  bookCollection.push({
   title: "Book 5",
   author: "Author 5",
   year: 2012
 });
 
-console.log(findBookListArray);
+console.log(bookCollection);
 
 // 9 задание — Создать ещё один массив, состоящий из тех же книг (манга)
-const getMangaListArray = [
+const mangaCatalog = [
   {
     title: "One piece",
     author: "Eiichiro Oda",
@@ -101,7 +101,7 @@ const getMangaListArray = [
   }
 ];
 
-const unitedBookOfManga = [...findBookListArray, ...getMangaListArray];
+const unitedBookOfManga = [...bookCollection, ...mangaCatalog];
 console.log(unitedBookOfManga);
 
 // 10 задание — Почитать про метод массива map
@@ -111,5 +111,5 @@ function assignRarityFlag(object) {
   return object;
 };
 
-const updatedFindBookListArray = unitedBookOfManga.map(assignRarityFlag);
-console.log(updatedFindBookListArray);
+const updatedbookCollection = unitedBookOfManga.map(assignRarityFlag);
+console.log(updatedbookCollection);
