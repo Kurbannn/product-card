@@ -11,7 +11,6 @@ console.log(objects.includes('throne'));
 // Задание 4
 function reverseArray(array) {
   array.reverse();
-  return array;
 }
 
 const reversedNumbers = reverseArray(numbers);
