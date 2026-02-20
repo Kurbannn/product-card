@@ -9,7 +9,9 @@ export const products = [
       "активные натуральные комплексы",
       "витамины С, А, РР, В И Е",
       "солнцезащитные компоненты"
-    ]
+    ],
+    image: "moisturizing-mousse.png",
+    inStock: true
   },
   {
     id: 2,
@@ -21,7 +23,9 @@ export const products = [
       "воски",
       "минералы",
       "масла"
-    ]
+    ],
+    image: "moisturizing-mask.png",
+    inStock: true
   },
   {
     id: 3,
@@ -33,7 +37,9 @@ export const products = [
       "минералы",
       "витамины С, А, РР, В И Е",
       "солнцезащитные компоненты"
-    ]
+    ],
+    image: "face-wash.png",
+    inStock: true
   },
   {
     id: 4,
@@ -45,7 +51,10 @@ export const products = [
       "воски",
       "минералы",
       "масла"
-    ]
+    ],
+    image: "gift-set-1.png",
+    inStock: true,
+    isGiftSet: true
   },
   {
     id: 5,
@@ -57,6 +66,9 @@ export const products = [
       "воски",
       "минералы",
       "масла"
-    ]
+    ],
+    image: "gift-set-5.png",
+    inStock: true,
+    isGiftSet: true
   }
 ];
