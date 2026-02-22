@@ -39,35 +39,32 @@ while (true) {
 function renderProductCards(productsArray, numberOfCards) {
   for (let i = 0; i < numberOfCards; i++) {
     const cardCopy = productCardTemplate.content.cloneNode(true);
+    const product = productsArray[i];
 
     if (i != 0) {
       const extraElement = cardCopy.querySelector('.extra-element');
       if (extraElement) extraElement.remove();
     }
 
-    cardCopy.querySelector('.product-image').src = `image/${getImageName(productsArray[i].name)}`;
-    cardCopy.querySelector('.product-image').alt = productsArray[i].name;
-    cardCopy.querySelector('.product-category').textContent = productsArray[i].category;
-    cardCopy.querySelector('h2').textContent = productsArray[i].name;
-    cardCopy.querySelector('.product-description').textContent = productsArray[i].description;
+    cardCopy.querySelector('.product-image').src = `image/${getImageName(product.name)}`;
+    cardCopy.querySelector('.product-image').alt = product.name;
+    cardCopy.querySelector('h2').textContent = product.name;
+    cardCopy.querySelector('.product-description').textContent = product.description;
 
-    const compositionLabel = cardCopy.querySelector('.composition-label');
-    if (compositionLabel) compositionLabel.textContent = "Состав:";
-
-    const compositionItems = cardCopy.querySelectorAll('.composition-item');
-    compositionItems.forEach((item, index) => {
-      if (productsArray[i].composition[index]) {
-        item.textContent = productsArray[i].composition[index];
-      }
+    const compositionList = cardCopy.querySelector('.product-compound');
+    compositionList.innerHTML = '';
+    
+    product.composition.forEach(ingredient => {
+      const li = document.createElement('li');
+      li.className = 'product-compound-item';
+      li.textContent = ingredient;
+      compositionList.appendChild(li);
     });
 
-    const priceLabel = cardCopy.querySelector('.price-label');
-    if (priceLabel) priceLabel.textContent = "Цена";
-
-    const priceValue = cardCopy.querySelector('.price-value');
+    const priceValue = cardCopy.querySelector('.product-price');
     if (priceValue) {
-      const formattedPrice = productsArray[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-      priceValue.textContent = `${formattedPrice} ₽`;
+      const formattedPrice = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+      priceValue.textContent = formattedPrice;
     }
 
     productCardList.appendChild(cardCopy);
