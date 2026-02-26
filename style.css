@@ -10,13 +10,19 @@
   list-style: none;
 }
 
-.main-title-wrapper{
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-title-wrapper {
   background-repeat: no-repeat;
   background-position: 85px -15px;
-  position: absolute;
   width: 1280px;
   background-image: url('../image/background-flowers.png'); 
   background-size: 790px 697px;
+  margin: 0 auto; 
 }
 
 .choose-product-text {
@@ -30,12 +36,13 @@
 }
 
 .product-card-list {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center; 
   gap: 30px; 
-  padding: 0 15px; 
+  padding: 0 15px;
+  margin: 110px auto 0; 
+  max-width: 1110px; 
 }
 
 .card-container {
@@ -47,13 +54,24 @@
   height: 573px; 
 }
 
+.product-card-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+
+.card-container:nth-child(4),
+.card-container:nth-child(5) {
+  grid-row: 2;
+}
+
 .product-category {
   font-weight: 400;
   font-size: 12px;
   line-height: 24px;
   text-transform: uppercase;
   color: #A5A3B9;
-  margin-top: 30px;
+  margin-top: 20px; 
   margin-bottom: 5px;
   display: block;
 }
@@ -63,24 +81,28 @@
   font-size: 20px;
   line-height: 27px;
   color: #515076;
-  margin-bottom: 5px;
+  margin-bottom: 10px; 
 }
 
 .product-description {
   margin-bottom: 15px;
+  font-size: 14px; 
+  line-height: 20px; 
 }
 
 .product-compound {
-  margin-top: 5px;
-  list-style: circle;
+  margin-top: 10px; 
 }
 
 .product-compound-item {
   margin-left: 0px;
   list-style: none;
+  font-size: 14px; 
+  line-height: 20px; 
 }
 
 .product-compound-item::before {
+  content: '';
   display: inline-block;
   margin-right: 8px;
   width: 6px;
@@ -88,124 +110,333 @@
   border-radius: 50%;
   border: 1px solid #515076;
   position: relative;
-  top: 0.5px;
+  top: -1px;
 }
 
 .product-price-container {
-  margin-top: 25px;
+  margin-top: 20px; 
   display: flex;
   justify-content: space-between;
 }
 
-.product-price-label,
-.product-price {
+.product-price-label {
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
 }
 
-
-.product-card-list {
-  margin-top: 110px; 
-}
-
-.card-container {
-  height: 573px; 
-}
-
-.product-category {
-  margin-top: 20px; 
-}
-
-.product-description {
-  font-size: 14px; 
-  line-height: 20px; 
-}
-
-.product-compound-item {
-  font-size: 14px; 
-  line-height: 20px; 
-}
-
 .product-price {
+  font-weight: 700;
   font-size: 22px; 
   line-height: 26px; 
 }
 
-
-.product-category {
-  margin-top: 20px; 
-}
-
-.product-name {
-  margin-bottom: 10px; 
-}
-
-.product-description {
-  margin-bottom: 15px; 
-}
-
-.product-compound {
-  margin-top: 10px; 
-}
-
-.product-price-container {
-  margin-top: 20px; 
-}
-
-
-.product-card-list {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, auto);
-  gap: 30px;
-  justify-content: center; 
-}
-
-.card-container:nth-child(4),
-.card-container:nth-child(5) {
-  grid-row: 2;}
-
-.product-card-list {
-  margin: 0 auto; 
-  max-width: 1110px; 
-}
-.product-card-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; 
-  gap: 30px; 
-  padding: 0 15px;}
 .bg-purple {
-    background-color: #9669c9ff;
+  background-color: #9669c9ff;
 }
 
 .bg-green {
-    background-color: #00FF00;
+  background-color: #00FF00;
 }
-.text-white {
-    color: #fff;
-}
-.text-black {
-    color: #000;
-}
-.card-container.green-bg { background-color: #00FF00;
 
+.text-white {
+  color: #fff;
 }
+
+.text-black {
+  color: #000;
+}
+
+.card-container.green-bg { 
+  background-color: #00FF00;
+}
+
 .alternative-theme {
-    background-color: #00FF00;
-    color: #000;
+  background-color: #00FF00;
+  color: #000;
 }
+
 #toggle-color-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    background-color: #9669c9ff;
-    color: #fff;
-  }
-  .card-container.purple-bg {
-    background-color: #9669c9ff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #9669c9ff;
+  color: #fff;
+}
+
+.card-container.purple-bg {
+  background-color: #9669c9ff;
+}
+
+.footer {
+  background-color: #2a2f3b;
+  color: #ffffff;
+  padding: 48px 20px 24px;
+  margin-top: auto; 
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.footer-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  color: #ffffff; 
+}
+
+.footer-header p {
+  font-size: 1.25rem;
+  color: #cccccc;
+}
+
+.subscription {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+  padding: 20px 0;
+  border-top: 1px solid #4a4f5c;
+  border-bottom: 1px solid #4a4f5c;
+}
+
+.subscription span {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  white-space: nowrap;
+}
+
+.subscription-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.subscription-form input[type="email"] {
+  padding: 12px 16px;
+  min-width: 250px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #f0f0f0;
+  color: #333; 
+}
+
+.subscription-form input[type="email"]::placeholder {
+  color: #666;
+}
+
+.subscription-form button {
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.subscription-form button:hover {
+  background-color: #0056b3;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: #a0a4af;
+  font-size: 0.95rem;
+}
+
+.footer-bottom .domain {
+  font-weight: 500;
+  color: #c0c4cf;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.registration-btn {
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 20px;
+}
+
+.registration-btn:hover {
+  background-color: #218838;
+}
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.modal-showed {
+  display: block;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(3px); 
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 25px 20px 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+.modal-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 0;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-group input {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  transition: border-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.form-group input.error {
+  border-color: #dc3545;
+}
+
+.form-group input.valid {
+  border-color: #28a745;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 11px;
+  margin-top: 2px;
+  min-height: 15px;
+}
+
+.modal-submit {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.modal-submit:hover {
+  background-color: #0056b3;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
