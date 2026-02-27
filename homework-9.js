@@ -56,7 +56,7 @@ openBtn.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && modal.classList.contains('modal-showed')) {
         closeModal();
     }
@@ -70,7 +70,7 @@ registrationForm.addEventListener('submit', (event) => {
 
     if (!registrationForm.checkValidity()) {
         registrationForm.reportValidity();
-        alert(' Регистрация отклонена: заполните форму корректно.');
+        alert('Регистрация отклонена: заполните форму корректно.');
         return;
     }
 
@@ -78,18 +78,14 @@ registrationForm.addEventListener('submit', (event) => {
     const formValue = Object.fromEntries(formData.entries());
 
     if (formValue.password !== formValue.confirmPassword) {
-        alert(' Регистрация отклонена: пароли не совпадают.');
+        alert('Регистрация отклонена: пароли не совпадают.');
         return;
     }
-
     user = {
-        firstName: formValue.firstName,
-        lastName: formValue.lastName,
-        birthDate: formValue.birthDate,
-        login: formValue.login,
-        password: formValue.password,
+        ...formValue,
         createdOn: new Date().toISOString()
     };
+    delete user.confirmPassword;
 
     console.log('Регистрация успешна!');
     console.log('Данные пользователя:', user);
@@ -97,7 +93,7 @@ registrationForm.addEventListener('submit', (event) => {
     registrationForm.reset();
     closeModal();
 
-    registrationForm.querySelectorAll('input').forEach(input => {
+    registrationForm.querySelectorAll('input').forEach((input) => {
         input.classList.remove('error', 'valid');
     });
 });
