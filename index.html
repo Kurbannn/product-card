@@ -34,8 +34,126 @@
     </template>
     <ul class="product-card-list"></ul>
   </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-header">
+        <h2>Product Cards</h2>
+        <p>У Нас Самые Лучшие Продукты Для Кожи!</p>
+      </div>
+      <div class="subscription">
+        <span>Подпишись на наши акции:</span>
+        <form class="subscription-form" action="#" method="post">
+          <label for="email-subscribe" class="visually-hidden">Email для подписки</label>
+          <input type="email" id="email-subscribe" name="email" placeholder="Введите Email..." required>
+          <button type="submit">Подписаться</button>
+        </form>
+      </div>
+      <button id="registration-btn" class="registration-btn">Регистрация</button>
+      <div class="footer-bottom">
+        <p class="domain">www.product-cards.com@all right reserve</p>
+      </div>
+    </div>
+  </footer>
+  <div class="modal" id="registrationModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Закрыть">&times;</button>
+      <h2 class="modal-title">Регистрация</h2>
+      <form class="modal-form" id="registrationForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">Имя <span class="required">*</span></label>
+            <input 
+              type="text" 
+              id="first-name" 
+              name="firstName" 
+              placeholder="Введите ваше имя"
+              required
+              minlength="2"
+              maxlength="50"
+              pattern="[A-Za-zА-Яа-я\-]+"
+              title="Только буквы и дефис"
+            >
+            <div class="error-message" id="firstNameError"></div>
+          </div>
+          <div class="form-group">
+            <label for="last-name">Фамилия <span class="required">*</span></label>
+            <input 
+              type="text" 
+              id="last-name" 
+              name="lastName" 
+              placeholder="Введите вашу фамилию"
+              required
+              minlength="2"
+              maxlength="50"
+              pattern="[A-Za-zА-Яа-я\-]+"
+              title="Только буквы и дефис"
+            >
+            <div class="error-message" id="lastNameError"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="birth-date">Дата рождения <span class="required">*</span></label>
+          <input 
+            type="date" 
+            id="birth-date" 
+            name="birthDate" 
+            required
+            max="2024-12-31"
+            min="1900-01-01"
+          >
+          <div class="error-message" id="birthDateError"></div>
+        </div>
+        <div class="form-group">
+          <label for="login">Логин <span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="login" 
+            name="login" 
+            placeholder="Придумайте логин (мин. 4 символа)"
+            required
+            minlength="4"
+            maxlength="20"
+            pattern="[a-zA-Z0-9_]+"
+            title="Только латинские буквы, цифры и знак подчеркивания"
+          >
+          <div class="error-message" id="loginError"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="password">Пароль <span class="required">*</span></label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              placeholder="Минимум 6 символов"
+              required
+              minlength="6"
+              pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+              title="Минимум 6 символов, хотя бы одна буква и одна цифра"
+            >
+            <div class="error-message" id="passwordError"></div>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Подтверждение пароля <span class="required">*</span></label>
+            <input 
+              type="password" 
+              id="confirm-password" 
+              name="confirmPassword" 
+              placeholder="Повторите пароль"
+              required
+              minlength="6"
+            >
+            <div class="error-message" id="confirmPasswordError"></div>
+          </div>
+        </div>
+        <button type="submit" class="modal-submit">Зарегистрироваться</button>
+      </form>
+    </div>
+  </div>
   <script src="main.js"></script>
   <script src="products-data.js" type="module"></script>
   <script src="homework-8.js" type="module"></script>
+  <script src="homework-9.js" type="module"></script>
 </body>
 </html>
