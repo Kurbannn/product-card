@@ -1,21 +1,24 @@
-export class Modal { 
-    constructor(modalId) {
+export class Modal {
+    constructor(modalId, openButtonId = null) {
         this.modal = document.getElementById(modalId);
-        this.body = document.body;
         this.addEventListeners();
+        
+        if (openButtonId) {
+            this.setOpenButton(openButtonId);
+        }
     }
 
     open() {
         if (this.modal) {
             this.modal.classList.add('modal-showed');
-            this.body.classList.add('modal-open');
+            document.body.classList.add('modal-open');
         }
     }
 
     close() {
         if (this.modal) {
             this.modal.classList.remove('modal-showed');
-            this.body.classList.remove('modal-open');
+            document.body.classList.remove('modal-open');
         }
     }
 

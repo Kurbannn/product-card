@@ -1,40 +1,49 @@
-   // Кнопка переключения цвета - вариант 1 (простейший)
-    const toggleColorBtn = document.querySelector('#toggle-color-btn');
-    toggleColorBtn.addEventListener('click', function() {
-   
-     // Переключаем два класса одним вызовом
-    this.classList.toggle('bg-purple');
-    this.classList.toggle('bg-green');
-    this.classList.toggle('text-white');
-    this.classList.toggle('text-black');
-});
-   // Покраска всех карточек 
-    const productCards = document.querySelectorAll('.card-container');
-    const changeColorAllCardsButton = document.querySelector('#change-color-all-cards');
-    changeColorAllCardsButton.addEventListener('click', () => {
-    productCards.forEach((card) => {
-    card.classList.toggle('bg-green', true);
-    });
+import { user, validateEmail } from './homework-9.js';
+import './homework-8.js';
+import './products-data.js';
+import { SmartWatch } from './SmartWatch.js';
+import { SportsWatch } from './SportsWatch.js';
+
+console.log('MAIN2.js загружен', user);
+
+console.log('МАГАЗИН УМНЫХ ЧАСОВ');
+console.log('=' .repeat(40));
+
+const basicWatch = new SmartWatch(
+    'Xiaomi', 'Mi Band 8', 3500, 18, 14, true
+);
+
+const garminWatch = new SportsWatch(
+    'Garmin', 'Forerunner 255', 29990, 46, 14, true, true, true
+);
+
+const polarWatch = new SportsWatch(
+    'Polar', 'Vantage V3', 34990, 47, 7, true, true, false
+);
+
+console.log('\nВСЕ ЧАСЫ В МАГАЗИНЕ:');
+const watches = [basicWatch, garminWatch, polarWatch];
+watches.forEach((watch, index) => {
+    console.log(`${index + 1}. ${watch.getInfo()}`);
 });
 
-   // Покраска первой карточки
-    const firstProductCard = document.querySelector('.card-container');
-    const changeColorFirstCardButton = document.querySelector('#change-color-first-card');
-    changeColorFirstCardButton.addEventListener('click', () => {
-    // Переключаем фиолетовый фон
-    firstProductCard.classList.toggle('bg-purple');
-});
+console.log('\nБАЗОВЫЕ ФУНКЦИИ:');
+basicWatch.turnOn();
+basicWatch.showTime();
+basicWatch.measureHeartRate();
+basicWatch.countSteps(1500);
+basicWatch.checkBattery();
 
-   // Открыть Google
-    const openGoogleButton = document.querySelector('#open-google');
-    openGoogleButton.addEventListener('click', function() {
-    if (confirm('Вы действительно хотите открыть Google?')) {
-    window.open('https://google.com');
-    }
-});
+console.log('\nСПОРТИВНЫЕ ФУНКЦИИ (Garmin):');
+garminWatch.turnOn();
+garminWatch.startWorkout('бег');
+garminWatch.measureAltitude();
+garminWatch.finishWorkout();
+garminWatch.showWorkoutStats();
 
-   // Вывести сообщение в консоль
-    const outputConsoleButton = document.querySelector('#output-console-log');
-    outputConsoleButton.addEventListener('click', function() {
-    console.log('Кнопка "вывести сообщение в консоль лог" была нажата!');
-});
+console.log('\nНАВИГАЦИЯ (Polar):');
+polarWatch.turnOn();
+polarWatch.navigateTo('Стадион');
+polarWatch.checkBattery();
+
+console.log('\nВсе тесты завершены!');

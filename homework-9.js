@@ -1,16 +1,9 @@
 import Form from './Form.js';
-import { Modal } from './Modal.js';  // ИСПРАВЛЕНО: с фигурными скобками, потому что это именованный экспорт
-
+import { Modal } from './Modal.js';
 export let user = null;
-
 export function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-}
-
-export function getFormData(formElement) {
-    const formData = new FormData(formElement);
-    return Object.fromEntries(formData.entries());
 }
 
 // №4. Форма подписки
@@ -33,14 +26,15 @@ emailForm.addEventListener('submit', (event) => {
         return;
     }
 
-    const formData = getFormData(form);
-    console.log(formData);
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+    
     emailForm.reset();
 });
 
 // №5. Модальное окно
-const registrationModal = new Modal('registrationModal');
-registrationModal.setOpenButton('registration-btn');
+const registrationModal = new Modal('registrationModal', 'registration-btn');
 
 // №6. Форма регистрации
 const registrationForm = new Form('registrationForm');
