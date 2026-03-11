@@ -1,4 +1,10 @@
-let user = null;
+import Form from './Form.js';
+import { Modal } from './Modal.js';
+export let user = null;
+export function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
 // №4. Форма подписки
 const emailForm = document.querySelector('.subscription-form');
@@ -20,80 +26,50 @@ emailForm.addEventListener('submit', (event) => {
         return;
     }
 
-    const formData = getFormData(form);
-    console.log(formData);
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+    
     emailForm.reset();
 });
 
-function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-function getFormData(formElement) {
-    const formData = new FormData(formElement);
-    return Object.fromEntries(formData.entries());
-}
-
 // №5. Модальное окно
-const modal = document.getElementById('registrationModal');
-const openBtn = document.getElementById('registration-btn');
-const closeBtn = document.querySelector('.modal-close');
-const overlay = document.querySelector('.modal-overlay');
-const body = document.body;
-
-function openModal() {
-    modal.classList.add('modal-showed');
-    body.classList.add('modal-open');
-}
-
-function closeModal() {
-    modal.classList.remove('modal-showed');
-    body.classList.remove('modal-open');
-}
-
-openBtn.addEventListener('click', openModal);
-closeBtn.addEventListener('click', closeModal);
-overlay.addEventListener('click', closeModal);
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal.classList.contains('modal-showed')) {
-        closeModal();
-    }
-});
+const registrationModal = new Modal('registrationModal', 'registration-btn');
 
 // №6. Форма регистрации
-const registrationForm = document.getElementById('registrationForm');
+const registrationForm = new Form('registrationForm');
 
-registrationForm.addEventListener('submit', (event) => {
+registrationForm.form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    if (!registrationForm.checkValidity()) {
-        registrationForm.reportValidity();
+    if (!registrationForm.isValid()) {
+        registrationForm.form.reportValidity();
         alert('Регистрация отклонена: заполните форму корректно.');
         return;
     }
 
-    const formData = new FormData(registrationForm);
-    const formValue = Object.fromEntries(formData.entries());
+    const formValue = registrationForm.getValues();
 
     if (formValue.password !== formValue.confirmPassword) {
         alert('Регистрация отклонена: пароли не совпадают.');
         return;
     }
+    
     user = {
         ...formValue,
         createdOn: new Date().toISOString()
     };
+    
     delete user.confirmPassword;
 
     console.log('Регистрация успешна!');
     console.log('Данные пользователя:', user);
 
     registrationForm.reset();
-    closeModal();
-
-    registrationForm.querySelectorAll('input').forEach((input) => {
+    
+    registrationForm.form.querySelectorAll('input').forEach((input) => {
         input.classList.remove('error', 'valid');
     });
+    
+    registrationModal.close();
 });

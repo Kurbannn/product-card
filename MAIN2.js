@@ -1,14 +1,16 @@
-import { user, validateEmail } from './homework-9.js';
+// 2 Импортируем нужные функции и переменные
+import { user, validateEmail, getFormData } from './homework-9.js';
 import './homework-8.js';
 import './products-data.js';
-import { SmartWatch } from './SmartWatch.js';
-import { SportsWatch } from './SportsWatch.js';
 
 console.log('MAIN2.js загружен', user);
+
+import { SmartWatch, SportsWatch } from './smart-watches.js';
 
 console.log('МАГАЗИН УМНЫХ ЧАСОВ');
 console.log('=' .repeat(40));
 
+// Создаем экземпляры
 const basicWatch = new SmartWatch(
     'Xiaomi', 'Mi Band 8', 3500, 18, 14, true
 );
