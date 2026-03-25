@@ -1,8 +1,57 @@
+import { Coffee } from './Coffee.js';
+import { Tea } from './Tea.js';
+import { Lemonade } from './Lemonade.js';
+import { Cafe } from './Cafe.js';
 import { user, validateEmail } from './homework-9.js';
 import './homework-8.js';
 import './products-data.js';
 import { SmartWatch } from './SmartWatch.js';
 import { SportsWatch } from './SportsWatch.js';
+
+console.log('СИСТЕМА УПРАВЛЕНИЯ КАФЕ');
+console.log('=' .repeat(50));
+const myCafe = new Cafe('Кофейная Гавань', 'ул. Ленина, 25');
+
+
+const espresso = new Coffee('Эспрессо', 'маленький', 150, 'арабика', 'без молока', 0);
+const greenTea = new Tea('Зелёный чай', 'средний', 120, 'зелёный', ['жасмин'], 3);
+const lemonade = new Lemonade('Цитрусовый лимонад', 'большой', 180, 'лимон', true, 100);
+
+myCafe.addToMenu(espresso);
+myCafe.addToMenu(greenTea);
+myCafe.addToMenu(lemonade);
+
+
+myCafe.getInfo();
+myCafe.showMenu();
+myCafe.order(espresso);
+myCafe.order(greenTea);
+myCafe.order(lemonade);
+console.log('\nДОПОЛНИТЕЛЬНЫЕ ВОЗМОЖНОСТИ:');
+console.log('=' .repeat(50));
+console.log('\nИЗМЕНЕНИЕ ТЕМПЕРАТУРЫ:');
+espresso.setTemperature(85);
+console.log(`Температура эспрессо: ${espresso.getTemperature()}°C`);
+lemonade.setTemperature(30);
+console.log(`Температура лимонада: ${lemonade.getTemperature()}°C`);
+
+
+console.log('\nДОБАВЛЕНИЕ ИНГРЕДИЕНТОВ:');
+espresso.addSugar(1);
+greenTea.addAdditive('мята');
+lemonade.addIce(50);
+console.log('\nИНФОРМАЦИЯ О НАПИТКАХ ПОСЛЕ ИЗМЕНЕНИЙ:');
+console.log(espresso.getInfo());
+console.log(greenTea.getInfo());
+console.log(lemonade.getInfo());
+
+console.log('\n' + '=' .repeat(50));
+console.log('Все тесты завершены успешно!');
+
+
+
+//это страрое дз
+
 
 console.log('MAIN2.js загружен', user);
 
