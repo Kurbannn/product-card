@@ -1,7 +1,12 @@
 import { Coffee } from './Coffee.js';
-import { Tea } from './tea.js';
+import { Tea } from './Tea.js';
 import { Lemonade } from './Lemonade.js';
-import { Cafe } from './cafe.js';
+import { Cafe } from './Cafe.js';
+import { user, validateEmail } from './homework-9.js';
+import './homework-8.js';
+import './products-data.js';
+import { SmartWatch } from './SmartWatch.js';
+import { SportsWatch } from './SportsWatch.js';
 
 console.log('СИСТЕМА УПРАВЛЕНИЯ КАФЕ');
 console.log('=' .repeat(50));
@@ -46,11 +51,7 @@ console.log('Все тесты завершены успешно!');
 
 
 //это страрое дз
-import { user, validateEmail } from './homework-9.js';
-import './homework-8.js';
-import './products-data.js';
-import { SmartWatch } from './SmartWatch.js';
-import { SportsWatch } from './SportsWatch.js';
+
 
 console.log('MAIN2.js загружен', user);
 
