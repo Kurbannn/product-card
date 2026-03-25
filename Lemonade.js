@@ -13,7 +13,7 @@ export class Lemonade extends Drink {
         return `${super.getInfo()} | Фрукт: ${this.fruit} | ${carbonatedStr} | Лед: ${this.ice}г`;
     }
 
-    _prepare() {
+    prepare() {
         super._prepare();
         console.log(`  - Выжимаем сок из ${this.fruit}`);
         console.log(`  - Смешиваем с ${this.carbonated ? 'газированной' : 'негазированной'} водой`);
