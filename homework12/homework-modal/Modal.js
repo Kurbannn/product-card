@@ -5,26 +5,19 @@ export class Modal {
     this.shouldCloseOnOverlay = shouldCloseOnOverlay;
     this.closeButton = this.modal.querySelector("#modal-close-button");
     this.handleClose = () => this.close();
-    this.handleOverlayClick = (e) => {
-     //тут я не уверен в написании но пусть будет
-      if (this.shouldCloseOnOverlay && e.target === this.overlay) {
-        this.close();
-      }
-    };
-    
     this.#initOpen(buttonId);
   }
 
   open() {
     this.modal.classList.add("modal-showed");
     this.overlay.classList.add("overlay-showed");
-    this.#initClose();
+    this.#addCloseListeners();
   }
 
   close() {
     this.modal.classList.remove("modal-showed");
     this.overlay.classList.remove("overlay-showed");
-    this.#destroyClose();
+    this.#removeCloseListeners();
   }
 
   isOpen() {
@@ -38,17 +31,17 @@ export class Modal {
     }
   }
 
-  #initClose() {
+  #addCloseListeners() {
     this.closeButton.addEventListener("click", this.handleClose);
     if (this.shouldCloseOnOverlay) {
-      this.overlay.addEventListener("click", this.handleOverlayClick);
+      this.overlay.addEventListener("click", this.handleClose);
     }
   }
 
-  #destroyClose() {
+  #removeCloseListeners() {
     this.closeButton.removeEventListener("click", this.handleClose);
     if (this.shouldCloseOnOverlay) {
-      this.overlay.removeEventListener("click", this.handleOverlayClick);
+      this.overlay.removeEventListener("click", this.handleClose);
     }
   }
 }
