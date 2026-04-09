@@ -35,7 +35,7 @@ function showInfo(message, duration = 2000) {
   }, duration);
 }
 
-function showUsers(users) {
+function renderUsers(users) {
   loadingMessage.style.display = 'none';
   errorMessage.style.display = 'none';
   usersContainer.style.display = 'block';
@@ -48,16 +48,17 @@ function showUsers(users) {
   usersList.innerHTML = users.map(user => `
     <div class="user-card">
       <button class="delete-user-btn" data-id="${user.id}">x</button>
-      <div class="user-name">${user.name} ${user.surname}</div>
-      <div class="user-telegram">${user.telegram || 'telegram не указан'}</div>
+      <div class="user-name">${escapeHtml(user.name)} ${escapeHtml(user.surname)}</div>
+      <div class="user-telegram">${escapeHtml(user.telegram) || 'telegram не указан'}</div>
       <div class="user-details">
         ${user.age ? `<span>${user.age} лет</span>` : ''}
-        ${user.city ? `<span>${user.city}</span>` : ''}
-        ${user.phone ? `<span>${user.phone}</span>` : ''}
+        ${user.city ? `<span>${escapeHtml(user.city)}</span>` : ''}
+        ${user.phone ? `<span>${escapeHtml(user.phone)}</span>` : ''}
       </div>
     </div>
   `).join('');
   
+
   document.querySelectorAll('.delete-user-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const userId = parseInt(btn.dataset.id);
@@ -66,13 +67,75 @@ function showUsers(users) {
   });
 }
 
-function saveToLocalStorage(users) {
+function escapeHtml(str) {
+  if (!str) return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+
+function getUsersFromLocalStorage() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  return saved ? JSON.parse(saved) : null;
+}
+
+function saveUsersToLocalStorage(users) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
 }
 
-function loadFromLocalStorage() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  return saved ? JSON.parse(saved) : null;
+function deleteAllUsersFromLocalStorage() {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+async function fetchUsers() {
+  const response = await fetch('./users.json');
+  
+  if (!response.ok) {
+    throw new Error(`Ошибка загрузки: ${response.status}`);
+  }
+  
+  const data = await response.json();
+  return data.users;
+}
+
+
+async function loadUsers() {
+  showLoading();
+  
+  try {
+    const users = await fetchUsers();
+    currentUsers = users;
+    saveUsersToLocalStorage(currentUsers);
+    renderUsers(currentUsers);
+    showInfo(`Загружено ${users.length} пользователей`);
+  } catch (error) {
+    console.error('Ошибка:', error);
+    showError();
+  }
+}
+
+async function getAllUsers() {
+  if (currentUsers.length === 0) {
+    await loadUsers();
+  } else {
+    renderUsers(currentUsers);
+    showInfo(`Отображено ${currentUsers.length} пользователей`);
+  }
+}
+
+async function loadData() {
+  showLoading();
+  
+  const savedUsers = getUsersFromLocalStorage();
+  
+  if (savedUsers && savedUsers.length > 0) {
+    currentUsers = savedUsers;
+    renderUsers(currentUsers);
+    showInfo(`Загружено из кэша ${currentUsers.length} пользователей`);
+  } else {
+    await loadUsers();
+  }
 }
 
 function deleteAllUsers() {
@@ -82,8 +145,8 @@ function deleteAllUsers() {
   }
   
   currentUsers = [];
-  saveToLocalStorage(currentUsers);
-  showUsers(currentUsers);
+  saveUsersToLocalStorage(currentUsers);
+  renderUsers(currentUsers);
   showInfo('Все пользователи удалены');
 }
 
@@ -96,48 +159,9 @@ function deleteUserById(userId) {
   }
   
   currentUsers = currentUsers.filter(user => user.id !== userId);
-  saveToLocalStorage(currentUsers);
-  showUsers(currentUsers);
+  saveUsersToLocalStorage(currentUsers);
+  renderUsers(currentUsers);
   showInfo(`Удален пользователь: ${deletedUser.name} ${deletedUser.surname}`);
-}
-
-function getAllUsers() {
-  if (currentUsers.length === 0) {
-    showInfo('Нет пользователей для отображения');
-    return;
-  }
-  
-  showUsers(currentUsers);
-  showInfo(`Отображено ${currentUsers.length} пользователей`);
-}
-
-async function loadData() {
-  showLoading();
-  
-  const savedUsers = loadFromLocalStorage();
-  
-  if (!savedUsers) {
-    try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      const response = await fetch('./users.json');
-      
-      if (!response.ok) {
-        throw new Error('Ошибка загрузки');
-      }
-      
-      const data = await response.json();
-      currentUsers = data.users;
-      saveToLocalStorage(currentUsers);
-      showUsers(currentUsers);
-      
-    } catch (error) {
-      showError();
-    }
-  } else {
-    currentUsers = savedUsers;
-    showUsers(currentUsers);
-  }
 }
 
 function init() {
