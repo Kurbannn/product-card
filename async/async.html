@@ -18,12 +18,18 @@
     <div id="loading-message" class="message loading">Данные загружаются...</div>
     <div id="error-message" class="message error" style="display: none;">Ошибка при загрузке данных</div>
     <div id="info-message" class="message info" style="display: none;"></div>
-
     <div id="users-container" class="users-container" style="display: none;">
       <div id="users-list" class="users-list"></div>
     </div>
   </div>
-
+  <template id="user-card-template">
+    <div class="user-card">
+      <button class="delete-user-btn" data-id="">x</button>
+      <div class="user-name"></div>
+      <div class="user-telegram"></div>
+      <div class="user-details"></div>
+    </div>
+  </template>
   <script type="module" src="async.js"></script>
 </body>
 </html>

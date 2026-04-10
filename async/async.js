@@ -1,5 +1,4 @@
 const STORAGE_KEY = 'users_data';
-
 const loadingMessage = document.getElementById('loading-message');
 const errorMessage = document.getElementById('error-message');
 const infoMessage = document.getElementById('info-message');
@@ -7,8 +6,11 @@ const usersContainer = document.getElementById('users-container');
 const usersList = document.getElementById('users-list');
 const getAllBtn = document.getElementById('get-all-btn');
 const deleteAllBtn = document.getElementById('delete-all-btn');
+const userTemplate = document.getElementById('user-card-template');
 let currentUsers = [];
 let totalUsersCount = 0;
+
+
 function showLoading() {
   loadingMessage.style.display = 'block';
   errorMessage.style.display = 'none';
@@ -34,28 +36,61 @@ function showInfo(message, duration = 2000) {
   }, duration);
 }
 
+// Низам вот твой template
+function createUserCard(user) {
+  const cardFragment = userTemplate.content.cloneNode(true);
+  
+  const deleteBtn = cardFragment.querySelector('.delete-user-btn');
+  deleteBtn.dataset.id = user.id;
+  
+  const userName = cardFragment.querySelector('.user-name');
+  userName.textContent = `${escapeHtml(user.name)} ${escapeHtml(user.surname)}`;
+  
+  const userTelegram = cardFragment.querySelector('.user-telegram');
+  userTelegram.textContent = user.telegram ? escapeHtml(user.telegram) : 'telegram не указан';
+  
+  const userDetails = cardFragment.querySelector('.user-details');
+  
+  if (user.age) {
+    const ageSpan = document.createElement('span');
+    ageSpan.textContent = `${user.age} лет`;
+    userDetails.appendChild(ageSpan);
+  }
+  
+  if (user.city) {
+    const citySpan = document.createElement('span');
+    citySpan.textContent = escapeHtml(user.city);
+    userDetails.appendChild(citySpan);
+  }
+  
+  if (user.phone) {
+    const phoneSpan = document.createElement('span');
+    phoneSpan.textContent = escapeHtml(user.phone);
+    userDetails.appendChild(phoneSpan);
+  }
+  
+  return cardFragment;
+}
+
 function renderUsers(users) {
   loadingMessage.style.display = 'none';
   errorMessage.style.display = 'none';
   usersContainer.style.display = 'block';
   
+  usersList.innerHTML = '';
+  
   if (!users || users.length === 0) {
-    usersList.innerHTML = '<div class="empty-message">Нет пользователей для отображения</div>';
+    const emptyMessage = document.createElement('div');
+    emptyMessage.className = 'empty-message';
+    emptyMessage.textContent = 'Нет пользователей для отображения';
+    usersList.appendChild(emptyMessage);
     return;
   }
   
-  usersList.innerHTML = users.map(user => `
-    <div class="user-card">
-      <button class="delete-user-btn" data-id="${user.id}">x</button>
-      <div class="user-name">${escapeHtml(user.name)} ${escapeHtml(user.surname)}</div>
-      <div class="user-telegram">${escapeHtml(user.telegram) || 'telegram не указан'}</div>
-      <div class="user-details">
-        ${user.age ? `<span>${user.age} лет</span>` : ''}
-        ${user.city ? `<span>${escapeHtml(user.city)}</span>` : ''}
-        ${user.phone ? `<span>${escapeHtml(user.phone)}</span>` : ''}
-      </div>
-    </div>
-  `).join('');
+  users.forEach(user => {
+    const userCard = createUserCard(user);
+    usersList.appendChild(userCard);
+  });
   
   document.querySelectorAll('.delete-user-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -86,7 +121,6 @@ async function fetchUsers() {
   if (!response.ok) {
     throw new Error(`Ошибка загрузки: ${response.status}`);
   }
-  
   const data = await response.json();
   return data.users;
 }
@@ -112,14 +146,12 @@ async function getAllUsers() {
     showInfo('Загружаем всех пользователей...');
     await loadUsers();
   } else {
- 
     showInfo('Все пользователи уже отображены');
   }
 }
 
 async function loadData() {
   showLoading();
-  
   const savedUsers = getUsersFromLocalStorage();
   
   if (savedUsers && savedUsers.length > 0) {

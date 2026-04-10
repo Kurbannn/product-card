@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   padding: 40px 20px;
 }
@@ -18,8 +18,9 @@ body {
 
 h1 {
   text-align: center;
-  color: #1a1a2e;
+  color: white;
   margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .controls {
@@ -30,20 +31,24 @@ h1 {
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 14px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
-  background-color: #4a6fa5;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-  background-color: #3a5a8c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .btn-danger {
@@ -53,6 +58,7 @@ h1 {
 
 .btn-danger:hover {
   background-color: #b02a37;
+  transform: translateY(-2px);
 }
 
 .message {
@@ -61,21 +67,28 @@ h1 {
   margin-bottom: 20px;
   border-radius: 8px;
   font-size: 16px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loading {
-  background-color: #e3f2fd;
+  background-color: rgba(227, 242, 253, 0.95);
   color: #1976d2;
 }
 
 .error {
-  background-color: #ffebee;
+  background-color: rgba(255, 235, 238, 0.95);
   color: #c62828;
 }
 
 .info {
-  background-color: #e8f5e9;
+  background-color: rgba(232, 245, 233, 0.95);
   color: #2e7d32;
+}
+
+.users-container {
+  margin-top: 20px;
 }
 
 .users-list {
@@ -87,11 +100,37 @@ h1 {
 
 .user-card {
   background-color: white;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 20px;
   width: 280px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   position: relative;
+  transition: all 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.delete-user-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.delete-user-btn:hover {
+  background-color: #b02a37;
+  transform: scale(1.1);
 }
 
 .user-name {
@@ -104,7 +143,7 @@ h1 {
 
 .user-telegram {
   font-size: 13px;
-  color: #4a6fa5;
+  color: #667eea;
   margin-bottom: 10px;
   word-break: break-word;
 }
@@ -121,29 +160,16 @@ h1 {
   display: inline-block;
   margin-right: 8px;
   margin-top: 5px;
-}
-
-.delete-user-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.delete-user-btn:hover {
-  background-color: #b02a37;
+  background-color: #f0f2f5;
+  padding: 3px 8px;
+  border-radius: 12px;
 }
 
 .empty-message {
   text-align: center;
-  padding: 40px;
+  padding: 60px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
   color: #999;
-  font-size: 16px;
+  font-size: 18px;
 }
