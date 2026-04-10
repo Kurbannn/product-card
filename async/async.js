@@ -7,9 +7,8 @@ const usersContainer = document.getElementById('users-container');
 const usersList = document.getElementById('users-list');
 const getAllBtn = document.getElementById('get-all-btn');
 const deleteAllBtn = document.getElementById('delete-all-btn');
-
 let currentUsers = [];
-
+let totalUsersCount = 0;
 function showLoading() {
   loadingMessage.style.display = 'block';
   errorMessage.style.display = 'none';
@@ -58,7 +57,6 @@ function renderUsers(users) {
     </div>
   `).join('');
   
-
   document.querySelectorAll('.delete-user-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const userId = parseInt(btn.dataset.id);
@@ -74,7 +72,6 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-
 function getUsersFromLocalStorage() {
   const saved = localStorage.getItem(STORAGE_KEY);
   return saved ? JSON.parse(saved) : null;
@@ -84,13 +81,8 @@ function saveUsersToLocalStorage(users) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
 }
 
-function deleteAllUsersFromLocalStorage() {
-  localStorage.removeItem(STORAGE_KEY);
-}
-
 async function fetchUsers() {
   const response = await fetch('./users.json');
-  
   if (!response.ok) {
     throw new Error(`Ошибка загрузки: ${response.status}`);
   }
@@ -99,12 +91,11 @@ async function fetchUsers() {
   return data.users;
 }
 
-
 async function loadUsers() {
   showLoading();
-  
   try {
     const users = await fetchUsers();
+    totalUsersCount = users.length;
     currentUsers = users;
     saveUsersToLocalStorage(currentUsers);
     renderUsers(currentUsers);
@@ -116,11 +107,13 @@ async function loadUsers() {
 }
 
 async function getAllUsers() {
-  if (currentUsers.length === 0) {
+  const isAllDisplayed = currentUsers.length === totalUsersCount;
+  if (!isAllDisplayed) {
+    showInfo('Загружаем всех пользователей...');
     await loadUsers();
   } else {
-    renderUsers(currentUsers);
-    showInfo(`Отображено ${currentUsers.length} пользователей`);
+ 
+    showInfo('Все пользователи уже отображены');
   }
 }
 
@@ -131,6 +124,7 @@ async function loadData() {
   
   if (savedUsers && savedUsers.length > 0) {
     currentUsers = savedUsers;
+    totalUsersCount = savedUsers.length;
     renderUsers(currentUsers);
     showInfo(`Загружено из кэша ${currentUsers.length} пользователей`);
   } else {
