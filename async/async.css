@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #b02a37;
+  transform: translateY(-2px);
+}
+
+.message {
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loading {
+  background-color: rgba(227, 242, 253, 0.95);
+  color: #1976d2;
+}
+
+.error {
+  background-color: rgba(255, 235, 238, 0.95);
+  color: #c62828;
+}
+
+.info {
+  background-color: rgba(232, 245, 233, 0.95);
+  color: #2e7d32;
+}
+
+.users-container {
+  margin-top: 20px;
+}
+
+.users-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.user-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.delete-user-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.delete-user-btn:hover {
+  background-color: #b02a37;
+  transform: scale(1.1);
+}
+
+.user-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  padding-right: 30px;
+}
+
+.user-telegram {
+  font-size: 13px;
+  color: #667eea;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.user-details {
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin-top: 5px;
+}
+
+.user-details span {
+  display: inline-block;
+  margin-right: 8px;
+  margin-top: 5px;
+  background-color: #f0f2f5;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 60px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  color: #999;
+  font-size: 18px;
+}

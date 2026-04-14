@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Управление пользователями</title>
+  <link rel="stylesheet" href="async.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Управление пользователями</h1>
+    
+    <div class="controls">
+      <button id="get-all-btn" class="btn btn-primary">Получить всех пользователей</button>
+      <button id="delete-all-btn" class="btn btn-danger">Удалить всех</button>
+    </div>
+
+    <div id="loading-message" class="message loading">Данные загружаются...</div>
+    <div id="error-message" class="message error" style="display: none;">Ошибка при загрузке данных</div>
+    <div id="info-message" class="message info" style="display: none;"></div>
+    <div id="users-container" class="users-container" style="display: none;">
+      <div id="users-list" class="users-list"></div>
+    </div>
+  </div>
+  <template id="user-card-template">
+    <div class="user-card">
+      <button class="delete-user-btn" data-id="">x</button>
+      <div class="user-name"></div>
+      <div class="user-telegram"></div>
+      <div class="user-details"></div>
+    </div>
+  </template>
+  <script type="module" src="async.js"></script>
+</body>
+</html>

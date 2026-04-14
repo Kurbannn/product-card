@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Владислав",
+      "surname": "Бабенко",
+      "telegram": "@babenkovlds",
+      "age": 25,
+      "phone": "+7 (999) 11-22-21",
+      "city": "Лас-Вегас"
+    },
+    {
+      "id": 2,
+      "name": "Фарух",
+      "surname": "Сафаров",
+      "telegram": "@safarovfarukh",
+      "age": 27,
+      "phone": "+7 (999) 234-56-78",
+      "city": "Нефтеюганск"
+    },
+    {
+      "id": 3,
+      "name": "Низам",
+      "surname": "Мекх",
+      "telegram": "@KhaoKai",
+      "age": 25,
+      "phone": "+7 (999) 345-67-89",
+      "city": "Грозный"
+    },
+    {
+      "id": 4,
+      "name": "Курбан",
+      "surname": "Садыков",
+      "telegram": "@KurbanShugu",
+      "age": 28,
+      "phone": "+7 (22) 289 85-55",
+      "city": "Каспийск"
+    }
+  ]
+}
